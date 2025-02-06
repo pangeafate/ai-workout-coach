@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workout Suggestion</title>
+  <style>
+    .formatted-output {
+      white-space: pre-wrap; /* Preserve newlines */
+      font-family: monospace;
+      margin-bottom: 20px;
+    }
+    table, th, td {
+      border: 1px solid #333;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+    th {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <h1>Workout Suggestion</h1>
+  <!-- Display the suggestion output from Llama -->
+  <div class="formatted-output">
+    {{ suggestion }}
+  </div>
+  
+  <hr>
+  <h2>Record Actual Workout</h2>
+  <form action="{{ url_for('record_actual') }}" method="post">
+    <table>
+      <tr>
+        <th>Body Part</th>
+        <th>Exercise Name</th>
+        <th>Max Weight</th>
+        <th>Sets</th>
+        <th>Reps</th>
+      </tr>
+      {% for i in range(5) %}
+      <tr>
+        <td><input type="text" name="body_part_{{ i }}"></td>
+        <td><input type="text" name="exercise_{{ i }}"></td>
+        <td><input type="text" name="max_weight_{{ i }}"></td>
+        <td><input type="number" name="sets_{{ i }}" value="5"></td>
+        <td><input type="number" name="reps_{{ i }}" value="8"></td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br>
+    <input type="submit" value="Save Actual Workout">
+  </form>
+  <br>
+  <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

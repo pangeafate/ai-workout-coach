@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Workout Coach</title>
+</head>
+<body>
+    <h1>AI Workout Coach</h1>
+    <ul>
+        <li><a href="{{ url_for('record_workout') }}">Record a New Workout</a></li>
+        <li><a href="{{ url_for('history') }}">View Workout History</a></li>
+        <li><a href="{{ url_for('suggest') }}">Get Workout Suggestion</a></li>
+    </ul>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</body>
+</html>

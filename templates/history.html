@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Workout History</title>
+</head>
+<body>
+    <h1>Workout History</h1>
+    {% if workouts %}
+        <ul>
+        {% for workout in workouts %}
+            <li>
+                <strong>ID:</strong> {{ workout[0] }},
+                <strong>Date:</strong> {{ workout[1] }},
+                <strong>Exercise:</strong> {{ workout[2] }},
+                <strong>Details:</strong> {{ workout[3] }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No workouts recorded.</p>
+    {% endif %}
+    <br>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

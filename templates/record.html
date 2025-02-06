@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Record Workout</title>
+</head>
+<body>
+    <h1>Record a New Workout</h1>
+    <form method="post">
+        <label>Date (YYYY-MM-DD, leave blank for today):</label><br>
+        <input type="text" name="date"><br><br>
+        <label>Exercise:</label><br>
+        <input type="text" name="exercise" required><br><br>
+        <label>Details:</label><br>
+        <textarea name="details"></textarea><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
