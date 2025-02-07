@@ -2,18 +2,13 @@
 import os
 import openai
 
-# Set your API key from the environment variable (for production use)
+# Set your API key from the environment variable.
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def query_openai(prompt: str) -> str:
-    # Check if we're running in development mode
-    if os.getenv("FLASK_ENV", "production") == "development":
-        # Return a dummy response for local testing
-        return "This is a simulated workout suggestion for local testing."
-    
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",  # or use "gpt-4" if available and desired
+            model="gpt-4o",  # or "gpt-4" if available and desired
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt},
