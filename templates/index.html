@@ -5,47 +5,56 @@
     <!-- Ensure proper scaling on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Workout Coach - Home</title>
-    <!-- Bootstrap CSS from CDN without integrity attribute to avoid digest errors -->
+    <!-- Bootstrap CSS (without integrity attribute for testing) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <style>
-      /* Custom styles (optional) */
       body {
         background-color: #f8f9fa;
+      }
+      /* Minimalistic button style */
+      .btn-minimal {
+        background-color: transparent;
+        border: 2px solid #007bff;
+        color: #007bff;
+        font-size: 1.2rem;
+        padding: 0.5rem 1.5rem;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      .btn-minimal:hover {
+        background-color: #007bff;
+        color: #fff;
+      }
+      /* Fixed container for the bottom buttons */
+      .bottom-buttons {
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
       }
     </style>
   </head>
   <body>
-    <!-- Navigation bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="#">Workout Coach</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/suggest">Suggestion</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/history">History</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Main content area -->
+    <!-- Main Content -->
     <div class="container mt-5">
-      <div class="jumbotron text-center">
+      <div class="text-center">
         <h1 class="display-4">Welcome to Your AI Workout Coach!</h1>
-        <p class="lead">Get personalized workout suggestions and record your progress.</p>
+        <p class="lead">
+          Your personal assistant for personalized workout suggestions and progress tracking.
+        </p>
         <hr class="my-4">
-        <p>Use the navigation above to get started.</p>
+        <p>
+          Get started by using the buttons below. Tap "Get Suggestion" for a new workout plan or "View History" to review your past sessions.
+        </p>
       </div>
     </div>
 
-    <!-- Bootstrap Bundle JS from CDN without integrity attribute -->
+    <!-- Bottom Center Minimalistic Buttons -->
+    <div class="bottom-buttons text-center">
+      <a href="{{ url_for('suggest') }}" class="btn btn-minimal me-3">Get Suggestion</a>
+      <a href="{{ url_for('history') }}" class="btn btn-minimal">View History</a>
+    </div>
+
+    <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   </body>
 </html>
