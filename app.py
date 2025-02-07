@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 import datetime
 from database import initialize_db, add_workout, get_all_workouts
-from llama_integration import query_llama
+from openai_integration import query_openai
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with a secure key for production
@@ -34,18 +34,13 @@ def history():
 
 @app.route('/suggest')
 def suggest():
-    # Retrieve all workouts (or just the recent ones)
+    # Retrieve recent workout history
     workouts = get_all_workouts()
-    
-    # Optionally, limit to the most recent 5 sessions to keep the prompt concise
     recent_workouts = workouts[:5]
-    
-    # Format the workout history into a readable string.
     history_text = "\n".join(
         [f"Date: {w[1]}, Exercise: {w[2]}, Details: {w[3]}" for w in recent_workouts]
     )
-    
-    # Build a prompt that incorporates both your workout history and detailed instructions.
+
     prompt = (
         "Based on my recent workout history focusing on strength training.\n"
         "Please suggest a workout plan for today, starting with warm-up and following with the main exercises. "
@@ -65,7 +60,7 @@ def suggest():
     )
     
     # Call the model with the combined prompt.
-    suggestion = query_llama(prompt)
+    suggestion = query_openai(prompt)
     
     return render_template('suggest.html', suggestion=suggestion)
 
