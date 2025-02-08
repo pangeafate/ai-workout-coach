@@ -13,7 +13,7 @@ def query_openai(prompt: str) -> str:
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": prompt},
         ],
-        max_tokens=200,
+        max_tokens=1000,
         temperature=0.7)
         return response.choices[0].message.content.strip()
     except Exception as e:
