@@ -12,16 +12,16 @@
         background-color: #f8f9fa;
         color: #212529; /* default text color */
       }
-      /* Custom responsive button style with explicit color settings */
+      /* Custom responsive button style with explicit color settings - 25% wider */
       .custom-btn {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 20vw;
+        width: 25vw;             /* Updated width: 25% of viewport width */
         height: 7vh;
-        min-width: 150px;
+        min-width: 190px;        /* Increased by ~25% from 150px */
         min-height: 45px;
-        max-width: 250px;
+        max-width: 310px;        /* Increased by ~25% from 250px */
         max-height: 60px;
         color: #212529;                 /* explicitly set text color */
         border: 2px solid #212529;       /* explicitly set border color */
@@ -64,8 +64,6 @@
       /* Style for disabled buttons */
       a.disabled {
         opacity: 0.6;
-        /* By default, pointer-events: none is set for 'disabled' in many CSS frameworks.
-           We'll override it so that the user can still click and trigger the alert. */
         pointer-events: auto !important;
         cursor: not-allowed;
       }
