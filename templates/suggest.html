@@ -12,31 +12,29 @@
         background: linear-gradient(135deg, #f8f9fa, #e9ecef);
         color: #212529;
       }
-      /* Suggestion Card Styling */
-      .suggestion-card {
+      /* Card styling for a modern, minimal look */
+      .card {
         background: #fff;
         border: none;
         border-radius: 0.75rem;
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-        padding: 1.5rem;
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
       }
-      .suggestion-card p {
+      .card-header {
+        background-color: #212529;
+        color: #fff;
         font-size: 1.1rem;
+        font-weight: 500;
+      }
+      .card-body p {
+        font-size: 1.05rem;
         line-height: 1.5;
       }
-      /* Form Section */
-      .form-section {
+      /* Section title styling */
+      .section-title {
         margin-top: 2rem;
-      }
-      /* Submit button minimum width */
-      .btn-submit {
-        min-width: 200px;
-      }
-      /* Responsive adjustments for the suggestion card on smaller screens */
-      @media (max-width: 576px) {
-        .suggestion-card {
-          padding: 1rem;
-        }
+        margin-bottom: 1rem;
+        font-weight: 500;
       }
     </style>
   </head>
@@ -45,25 +43,48 @@
       <!-- Hero Header -->
       <div class="text-center mb-5">
         <h1 class="display-5 fw-bold">Workout Suggestion</h1>
-        <p class="fs-5">Based on your workout history, here’s your personalized plan for today.</p>
+        <p class="fs-5">Your personalized workout plan for today.</p>
       </div>
-      <!-- Suggestion Card -->
-      <div class="card suggestion-card mb-5">
+      
+      <!-- Last Session Card -->
+      <div class="card">
+        <div class="card-header">
+          Last Session{% if last_session and last_session.date %} ({{ last_session.date }}){% endif %}
+        </div>
+        <div class="card-body">
+          {% if last_session and last_session.exercises %}
+            <ul class="mb-0">
+              {% for exercise in last_session.exercises %}
+                <li>{{ exercise }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p>No recorded session.</p>
+          {% endif %}
+        </div>
+      </div>
+      
+      <!-- Today's Workout Program Card -->
+      <div class="card">
+        <div class="card-header">
+          Today's Workout Program
+        </div>
         <div class="card-body">
           <p class="card-text">
             {{ suggestion }}
           </p>
         </div>
       </div>
+      
       <!-- Record Actual Workout Form -->
-      <div class="form-section">
-        <h2 class="h4 text-center mb-4">Record Actual Workout</h2>
+      <div class="mt-5">
+        <h2 class="section-title text-center">Record Actual Workout</h2>
         <form action="{{ url_for('record_actual') }}" method="post">
           <div class="table-responsive">
             <table class="table table-bordered">
               <thead class="table-light">
                 <tr>
-                  <th>Body Part</th>
+                  <th>Muscle Group</th>
                   <th>Exercise Name</th>
                   <th>Max Weight</th>
                   <th>Sets</th>
@@ -83,16 +104,18 @@
               </tbody>
             </table>
           </div>
-          <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-primary btn-submit">Save Actual Workout</button>
+          <div class="text-end">
+            <button type="submit" class="btn btn-primary">Save Actual Workout</button>
           </div>
         </form>
       </div>
+      
       <!-- Back to Home Button -->
       <div class="text-center mt-4">
         <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Back to Home</a>
       </div>
     </div>
+    
     <!-- Bootstrap Bundle JS from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   </body>
