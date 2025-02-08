@@ -24,7 +24,8 @@
         font-size: 1.1rem;
         font-weight: 500;
       }
-      .card-body p, .card-body table {
+      .card-body p,
+      .card-body table {
         font-size: 1.05rem;
         line-height: 1.5;
       }
@@ -32,6 +33,11 @@
   </head>
   <body>
     <div class="container py-5">
+      <!-- Welcome Message -->
+      {% if session.get('user_name') %}
+        <p class="text-end">Welcome, {{ session.get('user_name') }}!</p>
+      {% endif %}
+      
       <!-- Last Gym Session Card -->
       <div class="card">
         <div class="card-header">

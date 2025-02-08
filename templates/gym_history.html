@@ -42,10 +42,15 @@
   </head>
   <body>
     <div class="container my-5">
-      <h1 class="text-center mb-4">Workout History</h1>
+      <!-- Welcome message -->
+      {% if session.get('user_name') %}
+        <p class="text-end">Welcome, {{ session.get('user_name') }}!</p>
+      {% endif %}
+      
+      <h1 class="text-center mb-4">Gym Workout History</h1>
       {% if workouts %}
-        {# Group the workouts by date using the dictionary key "date" #}
-        {% set groups = workouts|groupby("date") %}
+        {# Group the workouts by the "date" key #}
+        {% set groups = workouts | groupby("date") %}
         <div class="accordion" id="historyAccordion">
           {% for group in groups %}
             <div class="accordion-item">
